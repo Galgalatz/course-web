@@ -1,0 +1,11 @@
+body{
+  background-color: #fff;
+}
+
+.btn{cursor: pointer;}
+
+#register_box{
+  height: 40px;
+  font-size: 22px;
+}
+
