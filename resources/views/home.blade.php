@@ -35,7 +35,7 @@
 
             </div>
             <div class="form-group">
-           <button type="submit" class="btn btn-primary btn-block">הירשם</button>
+           <button type="submit" class="btn btn-primary btn-block" id="submit">הירשם</button>
             </div>
   
           </form>
