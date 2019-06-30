@@ -30,7 +30,7 @@ class CourseRequest extends FormRequest
             'city.required' => 'חובה להזין עיר / כתובת',
             'date.required' => 'חובה להזין תאריך',
             'email.required' => 'חובה להזין מייל לקוח',
-            'email.email' => 'כתובת מייל לא תקינה',
+            'email.email' => 'כתובת מייל לא תקינה'
 
         ];
     }

@@ -4,6 +4,7 @@
 <script src="{{ asset('js/toastr.min.js') }}"></script>
 <script src="{{ asset('js/angular.min.js') }}"></script>
 <script src="{{ asset('../node_modules/rtl-bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/validation.js') }}"></script>
 @if(Session::has('sm'))
 <script>
 toastr.options.positionClass = '{{ Session::get('smpos') }}';

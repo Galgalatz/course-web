@@ -12,6 +12,7 @@
 */
 
 Route::name('home')->get('/', 'PagesController@home');
+Route::name('leads')->post('/', 'LeadController@store');
 Route::name('signin')->get('admin', 'PagesController@getSignin');
 Route::resource('courses', 'CourseController');
 Route::post('admin','PagesController@postSignin');
