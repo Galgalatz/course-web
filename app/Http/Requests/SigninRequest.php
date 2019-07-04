@@ -18,4 +18,11 @@ class SigninRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    public function messages(){
+        return[
+            'name.required' => 'יש להזין שם משתמש',
+            'password.required' => 'יש להזין סיסמא',
+        ];
+    }
 }

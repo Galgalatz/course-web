@@ -5,6 +5,8 @@
 @endsection --}}
 
 @section('content')
+@section('errors')
+@stop
 <title>{{ $title }}</title>
 </head>
 <body>
@@ -17,13 +19,14 @@
       <div class="row">
         <div class="col-6 mx-auto">
           <form method="POST" action="" autocomplete="off" novalidate="novalidation">
+            @csrf
             <div class="form-group">
               <label for="name">שם:</label>
-              <input type="text" name="name" id="name" class="form-control">
+              <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
             </div>
             <div class="form-group">
               <label for="email">מייל:</label>
-            <input type="email" name="email" id="email" class="form-control">
+            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
             </div>
             <div class="form-group">
             <select name="course" id="course" class="custom-select  mt-3">
@@ -32,6 +35,9 @@
             <option value="{{ $course['id'] }}" class="form-control">{{ $course['date'] }}  - {{ $course['course_name'] }} - {{ $course['city'] }}</option>
             @endforeach
             </select>
+            @if ($errors->has('בחר סדנא'))
+            <span class="@error('course') is-invalid @enderror"></span>
+            @endif
 
             </div>
             <div class="form-group">
