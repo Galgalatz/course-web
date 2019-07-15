@@ -1,48 +1,34 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Course;
-use Session;
-use Illuminate\Http\Request;
-use App\Http\Requests\SigninRequest;
-use App\User;
 
-class PagesController extends MainController
+use App\Course;
+use App\Pages;
+use Illuminate\Http\Request;
+
+class PagesController extends Controller
 {
 
-    public function home(){
-        self::$data['title'] = 'סדנאות';    
-        self::$data['courses'] = Course::all()->toArray();
-        return view('home', self::$data);
-     }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-    public function getSignin(){
+    public function index()
+    {
+        $title = 'דף נחיתה';
+        $pages = Pages::all();
+        return view('landing', compact('title', 'pages'));
+    }
 
-    if (!Session::has('is_admin')){
-        self::$data['title'] = 'כניסת אדמין';        
-        return view('signin', self::$data);
-    }else{
+    public function show_courses($page_id)
+    {
+        $title = 'סדנאות';
+        $courses = Course::all()->toArray();
+        return view('home-main', compact('title', 'courses'));
+    }
+
+    public function admin(){
         return redirect('courses');
     }
-         
-    }
-
-    public function postSignin(SigninRequest $request){
-
-        if( User::validUser($request['name'], $request['password']) ){
-            Session::put('is_admin', true);
-            Session::flash('sm', 'ברוך שובך!');
-            Session::flash('smpos', 'toast-top-right');
-            self::$data['title'] = 'אדמין פאנל';
-            return redirect('courses');
-           
-        }else{
-            Session::flash('fm', 'שם משתמש/סיסמא שגויים');
-            Session::flash('fmpos', 'toast-top-right');
-            return self::getSignin();
-         }
-    }
-
-
-
 }
