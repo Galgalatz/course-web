@@ -12,13 +12,11 @@
 */
 
 Route::get('/', 'PagesController@index')->name('home');
-Route::get('show_courses/{page_id}', 'PagesController@show_courses')->name('show_courses');
-//Route::post('show_courses/{page_id}', 'PagesController@show_courses')->name('show_courses');
 
+Route::get('courses/{page_id}', 'CourseController@index')->name('courses');
+Route::get('courses/{page_id}/create', 'CourseController@create')->name('courses.create');
+//Route::resource('courses', 'CourseController');
 Route::name('leads')->post('/', 'LeadController@store');
-Route::resource('courses', 'CourseController');
-Route::get('admin','PagesController@admin');
-
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

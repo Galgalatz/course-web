@@ -25,10 +25,6 @@ class PagesController extends Controller
     {
         $title = 'סדנאות';
         $courses = Course::all()->toArray();
-        return view('home-main', compact('title', 'courses'));
-    }
-
-    public function admin(){
-        return redirect('courses');
+        return view('courses', compact('title', 'courses'));
     }
 }

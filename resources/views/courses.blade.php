@@ -11,7 +11,7 @@
       <h1 class="text-center mt-5 display-5">ניהול סדנאות</h1>
       <div class="row">
           <div class="col-6 float-right">
-          <a href="{{ url('courses/create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> הוסף סדנה</a>
+          <a href="{{ route('courses.create', ['page_id'=>$page_id]) }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> הוסף סדנה</a>
         </div>
       </div>
       <div class="row">

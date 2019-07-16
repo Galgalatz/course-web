@@ -4,6 +4,11 @@
 <script src="{{ asset('js/toastr.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
+
+@if (Route::currentRouteName() == 'home')
+  <script src="{{ asset('js/show_courses.js') }}"></script>
+@endif
+
 @if(Session::has('sm'))
 <script>
 toastr.options.positionClass = '{{ Session::get('smpos') }}';
