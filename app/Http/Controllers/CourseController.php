@@ -11,6 +11,11 @@ use Session;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index($page_id)
     {
         $courses = Course::where('page_id',  $page_id)->simplePaginate(10);
