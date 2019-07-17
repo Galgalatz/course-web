@@ -15,6 +15,11 @@ Route::get('/', 'PagesController@index')->name('home');
 
 Route::get('courses/{page_id}', 'CourseController@index')->name('courses');
 Route::get('courses/{page_id}/create', 'CourseController@create')->name('courses.create');
+Route::post('courses/{page_id}/store', 'CourseController@store')->name('courses.store');
+Route::post('courses/{page_id}/update_position', 'CourseController@update_position')->name('courses.update_position');
+Route::get('courses/{page_id}/edit/{id}', 'CourseController@edit')->name('courses.edit');
+Route::match(['PUT','PATCH'], 'courses/{page_id}/update/{id}', 'CourseController@update')->name('courses.update');
+Route::delete( 'courses/{page_id}/destroy/{id}', 'CourseController@destroy')->name('courses.destroy');
 //Route::resource('courses', 'CourseController');
 Route::name('leads')->post('/', 'LeadController@store');
 

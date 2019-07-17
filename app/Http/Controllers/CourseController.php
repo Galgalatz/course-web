@@ -18,7 +18,7 @@ class CourseController extends Controller
 
     public function index($page_id)
     {
-        $courses = Course::where('page_id',  $page_id)->simplePaginate(10);
+        $courses = Course::where('page_id',  $page_id)->orderByRaw('`position`=0 asc')->orderBy('position', 'asc')->get();
         return view('courses', compact('courses', 'page_id'));
     }
 
@@ -28,9 +28,10 @@ class CourseController extends Controller
         return view('add-course', compact('title', 'page_id'));
     }
 
-    public function store(CourseRequest $request)
+    public function store(CourseRequest $request, $page_id)
     {
         $course = new Course();
+        $course->page_id = $page_id;
         $course->course_name = $request['course_name'];
         $course->city = $request['city'];
         $course->date = $request['date'];
@@ -39,8 +40,8 @@ class CourseController extends Controller
         Session::flash('title', 'מזל טוב!');
         Session::flash('sm', 'עוד סדנה נולדה');
         Session::flash('smpos', 'toast-top-right');
-//        Course::save_new($request); //calling the method only if pass validation MenuRequest
-        return redirect('courses');
+
+        return redirect()->route('courses.create', ['page_id' => $page_id]);
     }
 
     public function show($id)
@@ -50,14 +51,14 @@ class CourseController extends Controller
         return view('delete_course', self::$data);
     }
 
-    public function edit($id)
+    public function edit($page_id, $id)
     {
-        self::$data['course_item'] = Course::find($id)->toArray();
-        self::$data['title'] = 'עריכת סדנה';
-        return view('edit_course', self::$data);
+        $course_item = Course::find($id)->toArray();
+        $title = 'עריכת סדנה';
+        return view('edit_course', compact('course_item', 'title', 'page_id', 'id'));
     }
 
-    public function update(CourseRequest $request, $id)
+    public function update(CourseRequest $request, $page_id, $id)
     {
         $course = Course::find($id);
         $course->course_name = $request['course_name'];
@@ -68,14 +69,32 @@ class CourseController extends Controller
         Session::flash('sm', 'הסדנה עודכנה בהצלחה!');
         Session::flash('smpos', 'toast-top-right');
 
-        return redirect('courses');
+        return redirect()->route('courses', ['page_id' => $page_id]);
     }
 
-    public function destroy($id)
+    public function update_position(Request $request)
+    {
+        if($request->ajax())
+        {
+            $positions = $request->get('positions');
+
+            foreach ($positions as $position)
+            {
+                $id = $position[0];
+                $new_position = $position[1];
+
+                $course = Course::find($id);
+                $course->position = $new_position;
+                $course->save();
+            }
+        }
+    }
+
+    public function destroy($page_id, $id)
     {
         Course::destroy($id);
         Session::flash('sm', 'הסדנה נמחקה בהצלחה!');
         Session::flash('smpos', 'toast-top-right');
-        return redirect('courses');
+        return redirect()->route('courses', ['page_id' => $page_id]);
     }
 }

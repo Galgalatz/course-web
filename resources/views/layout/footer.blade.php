@@ -3,10 +3,14 @@
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/toastr.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/script.js') }}"></script>
 
 @if (Route::currentRouteName() == 'home')
   <script src="{{ asset('js/show_courses.js') }}"></script>
+@endif
+
+@if (Route::currentRouteName() == 'courses')
+  <script src="{{ asset('js/jquery-ui.js') }}"></script>
+  <script src="{{ asset('js/courses.js') }}"></script>
 @endif
 
 @if(Session::has('sm'))

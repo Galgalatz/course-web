@@ -17,7 +17,7 @@
       </div>
       <div class="row">
         <div class="col-6 mx-auto">
-          <form method="POST" action="{{ url('courses') }}" autocomplete="off" novalidate="novalidation">
+          <form method="POST" action="{{ route('courses.store', ['page_id'=>$page_id]) }}" autocomplete="off" novalidate="novalidation">
               @csrf
             <div class="form-group">
               <label for="course_name"><span class="text-danger">*</span> שם סדנה:</label>

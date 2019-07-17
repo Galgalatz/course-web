@@ -12,12 +12,12 @@
       <div class="row">
         <div class="col-8"></div>
         <div class="col-4 mb-4">
-          <a class="text-secondary" href="{{ url('courses') }}">חזור <i class="fas fa-angle-double-left"></i></a>
+          <a class="text-secondary" href="{{ route('courses', ['page_id'=>$page_id]) }}">חזור <i class="fas fa-angle-double-left"></i></a>
         </div>
       </div>
       <div class="row">
         <div class="col-6 mx-auto">
-          <form method="POST" action="{{ url('courses/' . $course_item['id']) }}" autocomplete="off" novalidate="novalidation">
+          <form method="POST" action="{{ route('courses.update', ['page_id'=>$page_id, 'id'=>$id]) }}" autocomplete="off" novalidate="novalidation">
             @method('PUT') 
             @csrf
             <div class="form-group">
