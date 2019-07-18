@@ -37,7 +37,8 @@
             <div class="form-group">
               <label for="email"><span class="text-danger">*</span> מייל:</label>
             <input value="{{ old('email')}}" type="email" name="email" id="email" class="form-control">
-            <small class="text-muted">נא לוודא תקינות כתובת מייל</small>   
+            <small class="text-muted">נא לוודא תקינות כתובת מייל (אפשר להזין כמה מיילים, להפריד עם הפסיק)</small><br>
+            <small class="text-muted">לדוגמה: test@gmail.com,test2@gmail.com</small>
           </div>
             <div class="form-group">
               <button type="submit" class="btn btn-danger btn-block">הוסף</button>
