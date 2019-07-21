@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h1 class="text-center mt-5 display-5">ניהול סדנאות</h1>
+      <h1 class="text-center mt-5 display-5">ניהול סדנאות - @php echo $page_name; @endphp</h1>
       <input class="page_id_for_js" type="hidden" value="{{$page_id}}">
       <div class="row">
           <div class="col-6 float-right">

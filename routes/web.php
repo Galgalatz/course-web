@@ -21,7 +21,6 @@ Route::get('courses/{page_id}/edit/{id}', 'CourseController@edit')->name('course
 Route::match(['PUT','PATCH'], 'courses/{page_id}/update/{id}', 'CourseController@update')->name('courses.update');
 Route::delete( 'courses/{page_id}/destroy/{id}', 'CourseController@destroy')->name('courses.destroy');
 //Route::resource('courses', 'CourseController');
-Route::name('leads')->post('/', 'LeadController@store');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

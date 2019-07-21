@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Http\Requests\CourseRequest;
+use App\Pages;
 use Illuminate\Http\Request;
 use Session;
 
@@ -19,7 +20,10 @@ class CourseController extends Controller
     public function index($page_id)
     {
         $courses = Course::where('page_id',  $page_id)->orderByRaw('`position`=0 asc')->orderBy('position', 'asc')->get();
-        return view('courses', compact('courses', 'page_id'));
+
+        $page_name = $this->get_page_name($page_id);
+
+        return view('courses', compact('courses', 'page_id', 'page_name'));
     }
 
     public function create($page_id)
@@ -42,13 +46,6 @@ class CourseController extends Controller
         Session::flash('smpos', 'toast-top-right');
 
         return redirect()->route('courses.create', ['page_id' => $page_id]);
-    }
-
-    public function show($id)
-    {
-        self::$data['item_id'] = $id;
-        self::$data['title'] = 'מחיקת סדנה';
-        return view('delete_course', self::$data);
     }
 
     public function edit($page_id, $id)
@@ -96,5 +93,12 @@ class CourseController extends Controller
         Session::flash('sm', 'הסדנה נמחקה בהצלחה!');
         Session::flash('smpos', 'toast-top-right');
         return redirect()->route('courses', ['page_id' => $page_id]);
+    }
+
+    private function get_page_name($id)
+    {
+        $page = Pages::find($id);
+
+        return $page->name;
     }
 }
