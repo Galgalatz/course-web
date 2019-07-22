@@ -35,6 +35,12 @@
             <input value="{{ $course_item['date'] }}" type="text" name="date" id="date" class="form-control">
             <small class="text-muted">במתכונת d.m.yy</small>
             </div>
+            @if ($page_id > 3)
+              <div class="form-group">
+                <label for="mail_text"><span class="text-danger">*</span> טקסט בתוך המייל:</label>
+                <input value="{{ $course_item['mail_text'] }}" type="text" name="mail_text" id="mail_text" class="form-control">
+              </div>
+            @endif
             <div class="form-group">
               <label for="email"><span class="text-danger">*</span> מייל:</label>
             <input value="{{ $course_item['to_email'] }}" type="email" name="email" id="email" class="form-control">

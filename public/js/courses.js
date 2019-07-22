@@ -45,3 +45,14 @@ $( function() {
         });
     }
 } );
+
+$(document).on('click', '.delete_course', function () {
+    let page_id = $(this).data('page');
+    let course_id = $(this).data('course');
+
+    let action = config.base + 'courses/' + page_id + '/' + 'destroy/' + course_id;
+
+    $('#delete_form_modal').attr('action', action);
+
+    $('#delete_alert').modal('show');
+});

@@ -24,6 +24,9 @@
                     <th scope="col">שם סדנה</th>
                     <th scope="col">עיר</th>
                     <th scope="col">תאריך</th>
+                    @if ($page_id > 3)
+                      <th scope="col">טקסט בתוך המייל</th>
+                    @endif
                     <th scope="col">מייל לקוח</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -36,16 +39,15 @@
                     <td>{{ $course['course_name'] }}</td>
                     <td>{{ $course['city'] }}</td>
                     <td>{{ $course['date'] }}</td>
+                    @if ($page_id > 3)
+                      <td>{{ $course['mail_text'] }}</td>
+                    @endif
                     <td>{{ $course['to_email'] }}</td>
                     <td><a href="{{ route('courses.edit', ['page_id'=>$page_id, 'id'=>$course['id']]) }}"><i class="fas fa-pen pl-3 text-success"></i></a></td>
                     <td>
-                      <form action="{{ route('courses.destroy', ['page_id'=>$page_id, 'id'=>$course['id']] )}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm text-center bg-transparent" type="submit">
-                          <i class="far fa-trash-alt text-danger"></i>
-                        </button>
-                      </form>
+                      <button data-page="{{$page_id}}" data-course="{{$course['id']}}" class="btn btn-sm text-center bg-transparent delete_course">
+                        <i class="far fa-trash-alt text-danger"></i>
+                      </button>
                     </td>
                   </tr>
                   @endforeach
@@ -63,4 +65,27 @@
 </div>
 @endsection
 
-
+<!-- Modal -->
+<div class="modal fade" id="delete_alert" tabindex="-1" role="dialog" aria-labelledby="delete_alert" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="delete_alert_label">אזהרה</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-danger">
+        להמשיך למחיקה?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ביטול</button>
+        <form id="delete_form_modal" action="" method="post">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">למחוק</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
