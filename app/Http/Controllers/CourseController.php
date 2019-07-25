@@ -43,6 +43,10 @@ class CourseController extends Controller
         {
             $course->mail_text = $request['mail_text'];
         }
+        else
+        {
+            $course->mail_text = '';
+        }
         $course->to_email = $request['email'];
         $course->save();
         Session::flash('title', 'מזל טוב!');
@@ -68,6 +72,10 @@ class CourseController extends Controller
         if ($page_id > 3)
         {
             $course->mail_text = $request['mail_text'];
+        }
+        else
+        {
+            $course->mail_text = '';
         }
         $course->to_email = $request['email'];
         $course->save();

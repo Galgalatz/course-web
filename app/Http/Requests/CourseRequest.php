@@ -18,7 +18,7 @@ class CourseRequest extends FormRequest
             'course_name' => 'required',
             'city' => 'required',
             'date' => 'required',
-            'mail_text' => 'required',
+//            'mail_text' => 'required',
             // 'date' => ['required', 'regex:/^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$*/'],
             'email' => 'required'
         ];
@@ -30,7 +30,7 @@ class CourseRequest extends FormRequest
             'course_name.required' => 'חובה להזין שם לסדנה',
             'city.required' => 'חובה להזין עיר / כתובת',
             'date.required' => 'חובה להזין תאריך',
-            'mail_text.required' => 'חובה להזין טקסט בתוך מייל',
+//            'mail_text.required' => 'חובה להזין טקסט בתוך מייל',
             'email.required' => 'חובה להזין מייל לקוח'
         ];
     }
