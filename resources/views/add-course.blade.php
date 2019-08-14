@@ -35,10 +35,16 @@
             <small class="text-muted">במתכונת d.m.yy</small>
             </div>
             @if ($page_id > 3)
-              <div class="form-group">
-                <label for="mail_text"><span class="text-danger">*</span> טקסט בתוך המייל:</label>
-                <input value="{{ old('mail_text') }}" type="text" name="mail_text" id="mail_text" class="form-control">
-              </div>
+                {{-- <input value="{{ old('mail_text') }}" type="text" name="mail_text" id="mail_text" class="form-control"> --}}
+                <div class="form-group">
+                <label for="mail_text"><span class="text-danger">*</span> <a target="_blank" href="{{ route('maccabi-tv') }}">טקסט בתוך המייל:</a> </label>
+                  <select class="form-control input_tivi" id="mail_text" name="mail_text">
+                    <option value="">בחר לפי עיר</option>
+                 @foreach($tivi_emails as $tivi_email)
+                  <option value="{{$tivi_email['city_name']}} - {{$tivi_email['email_name']}}">{{$tivi_email['city_name']}} - {{$tivi_email['email_name']}}</option>
+                  @endforeach
+                  </select>
+                </div>
             @endif
             <div class="form-group">
               <label for="email"><span class="text-danger">*</span> מייל:</label>

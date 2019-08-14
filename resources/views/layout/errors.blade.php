@@ -1,5 +1,5 @@
 @section('errors')
-    @if ( !empty($err_top) && $errors->any() )
+    @if ( $errors->any() )
         @foreach($errors->all() as $error)
             <div class="iconic-alert">
                 <div class="alert alert-danger alert-dismissible fade show container col-3" role="alert">

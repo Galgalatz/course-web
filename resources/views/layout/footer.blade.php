@@ -8,6 +8,10 @@
   <script src="{{ asset('js/show_courses.js') }}"></script>
 @endif
 
+@if (Route::currentRouteName() == 'maccabi-tv')
+  <script src="{{ asset('js/tv.js') }}"></script>
+@endif
+
 @if (Route::currentRouteName() == 'courses')
   <script src="{{ asset('js/jquery-ui.js') }}"></script>
   <script src="{{ asset('js/courses.js') }}"></script>
