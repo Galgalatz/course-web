@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Pages;
+
 use Illuminate\Http\Request;
 
 class PagesController extends Controller

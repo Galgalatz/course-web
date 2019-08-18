@@ -56,3 +56,4 @@ $(document).on('click', '.delete_course', function () {
 
     $('#delete_alert').modal('show');
 });
+

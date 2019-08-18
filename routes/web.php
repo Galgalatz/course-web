@@ -22,6 +22,12 @@ Route::match(['PUT','PATCH'], 'courses/{page_id}/update/{id}', 'CourseController
 Route::delete( 'courses/{page_id}/destroy/{id}', 'CourseController@destroy')->name('courses.destroy');
 //Route::resource('courses', 'CourseController');
 
+
+Route::get('emails-tivi', 'TiviController@index')->name('maccabi-tv');
+Route::get('emails-tivi/create', 'TiviController@create')->name('maccabi-tv.create');
+Route::post('emails-tivi/store', 'TiviController@store')->name('maccabi-tv.store');
+Route::delete('emails-tivi/destroy/{id}', 'TiviController@destroy')->name('maccabi-tv.destroy');
+
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

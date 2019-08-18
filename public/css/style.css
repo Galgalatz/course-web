@@ -12,3 +12,11 @@ body{
 #delete_form_modal {
   margin: 0 .25rem 0 0;
 }
+
+#delete_form_modal_tv {
+  margin-left: .25rem;
+  margin-bottom: 0;
+  margin-right: .25rem;
+}
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Course;
 use App\Http\Requests\CourseRequest;
 use App\Pages;
+use App\EmailsTivi;
 use Illuminate\Http\Request;
 use Session;
 
@@ -29,7 +30,13 @@ class CourseController extends Controller
     public function create($page_id)
     {
         $title = 'הוספת סדנה';
-        return view('add-course', compact('title', 'page_id'));
+
+        if($page_id > 3){
+            $tivi_emails = EmailsTivi::all();
+            return view('add-course', compact('title', 'page_id', 'tivi_emails'));
+        }else{
+            return view('add-course', compact('title', 'page_id'));
+        }
     }
 
     public function store(CourseRequest $request, $page_id)
@@ -41,7 +48,9 @@ class CourseController extends Controller
         $course->date = $request['date'];
         if ($page_id > 3)
         {
-            $course->mail_text = $request['mail_text'];
+            if($request['mail_text']){
+                $course->mail_text = $request['mail_text'];
+            }
         }
         else
         {
@@ -59,8 +68,17 @@ class CourseController extends Controller
     public function edit($page_id, $id)
     {
         $course_item = Course::find($id)->toArray();
+             
         $title = 'עריכת סדנה';
-        return view('edit_course', compact('course_item', 'title', 'page_id', 'id'));
+
+        if ($page_id > 3)
+        {
+             $tivi_emails = EmailsTivi::all();
+             return view('edit_course', compact('course_item', 'title', 'page_id', 'id', 'tivi_emails'));
+        }else{
+            return view('edit_course', compact('course_item', 'title', 'page_id', 'id'));
+        }
+       
     }
 
     public function update(CourseRequest $request, $page_id, $id)
@@ -71,6 +89,7 @@ class CourseController extends Controller
         $course->date = $request['date'];
         if ($page_id > 3)
         {
+            
             $course->mail_text = $request['mail_text'];
         }
         else

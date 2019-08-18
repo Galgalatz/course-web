@@ -36,11 +36,21 @@
             <small class="text-muted">במתכונת d.m.yy</small>
             </div>
             @if ($page_id > 3)
-              <div class="form-group">
-                <label for="mail_text"><span class="text-danger">*</span> טקסט בתוך המייל:</label>
-                <input value="{{ $course_item['mail_text'] }}" type="text" name="mail_text" id="mail_text" class="form-control">
-              </div>
+    
+            {{-- <input value="{{ old('mail_text') }}" type="text" name="mail_text" id="mail_text" class="form-control"> --}}
+           <div class="form-group">
+             <label for="mail_text"><span class="text-danger">*</span> טקסט בתוך המייל:</label>
+             <select class="form-control" id="mail_text" name="mail_text">
+               <option value="{{ $course_item['mail_text'] }}">{{ $course_item['mail_text'] }}</option>
+             @foreach($tivi_emails as $tivi_email)
+             <option value="{{$tivi_email['city_name']}} - {{$tivi_email['email_name']}}">{{$tivi_email['city_name']}} - {{$tivi_email['email_name']}}</option>
+             @endforeach
+             </select>
+           </div>
             @endif
+
+
+
             <div class="form-group">
               <label for="email"><span class="text-danger">*</span> מייל:</label>
             <input value="{{ $course_item['to_email'] }}" type="email" name="email" id="email" class="form-control">
