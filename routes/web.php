@@ -36,3 +36,11 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //Route::post('register', 'Auth\RegisterController@register');
+
+// Route::name('home')->get('/', 'PagesController@home');
+// Route::name('leads')->post('/', 'LeadController@store');
+// Route::name('signin')->get('admin', 'PagesController@getSignin');
+// Route::resource('courses', 'CourseController');
+// Route::post('admin','PagesController@postSignin');
+
+

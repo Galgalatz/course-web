@@ -145,4 +145,5 @@ class CourseController extends Controller
 
         return $page->url;
     }
+
 }
