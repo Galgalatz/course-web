@@ -11,6 +11,7 @@
 |
 */
 
+<<<<<<< HEAD
 Route::get('/', 'PagesController@index')->name('home');
 
 Route::get('courses/{page_id}', 'CourseController@index')->name('courses');
@@ -36,3 +37,12 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Registration Routes...
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //Route::post('register', 'Auth\RegisterController@register');
+=======
+Route::name('home')->get('/', 'PagesController@home');
+Route::name('leads')->post('/', 'LeadController@store');
+Route::name('signin')->get('admin', 'PagesController@getSignin');
+Route::resource('courses', 'CourseController');
+Route::post('admin','PagesController@postSignin');
+
+
+>>>>>>> b1164325b7d11e19e4c0349af0cd50d85802827d
