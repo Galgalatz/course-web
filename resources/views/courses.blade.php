@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('content')
+
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -13,6 +14,20 @@
         <div class="col-6">
           <a class="text-secondary float-left" href="{{ route('home') }}">בחירת דף נחיתה <i class="fas fa-angle-double-left"></i></a>
         </div>
+
+      @if  ($page_id <= 3 || $page_id == 6)
+        <div class="col-6">
+            <a target="_blank" class="text-success float-left" href="{{ url($page_url) }}">צפייה בדף <i class="fas fa-eye"></i></a>
+        </div>
+      @else
+      <div class="col-4">
+          <a target="_blank" class="text-success float-left" href="{{ url($page_url . 'women') }}">צפייה בדף נשים <i class="fas fa-eye"></i></a>
+      </div>
+      <div class="col-4">
+          <a target="_blank" class="text-success float-left" href="{{ url($page_url . 'man') }}">צפייה בדף גברים <i class="fas fa-eye"></i></a>
+      </div>
+      @endif
+
       </div>
       <div class="row">
         <div class="col-12">

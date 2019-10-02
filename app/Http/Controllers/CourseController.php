@@ -24,7 +24,9 @@ class CourseController extends Controller
 
         $page_name = $this->get_page_name($page_id);
 
-        return view('courses', compact('courses', 'page_id', 'page_name'));
+        $page_url = $this->get_page_url($page_id);
+
+        return view('courses', compact('courses', 'page_id', 'page_name', 'page_url'));
     }
 
     public function create($page_id)
@@ -135,5 +137,12 @@ class CourseController extends Controller
         $page = Pages::find($id);
 
         return $page->name;
+    }
+
+    private function get_page_url($id)
+    {
+        $page = Pages::find($id);
+
+        return $page->url;
     }
 }
